@@ -27,7 +27,6 @@ void ErrorFile(FILE* input) {
 
 
 
-
 void longest_substring_search(char* string, int len_string)
 {
 	int max_len_substring = 0;
@@ -52,14 +51,17 @@ void longest_substring_search(char* string, int len_string)
 
 			if (number_of_coincidences == (index_element - i))
 			{
-				len_substring++;
 				current_substring = (char*)realloc(current_substring, (len_substring + 1) * sizeof(char));
 				current_substring[len_substring] = string[index_element];
+				len_substring++;
 			}
 
 			index_element++;
 			if (index_element > len_string)
+			{
+				index_element--;
 				break;
+			}
 		}
 
 
