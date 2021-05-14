@@ -1,10 +1,111 @@
 #include<stdio.h>
 #include<locale.h>
 #include<stdlib.h>
+#include<malloc.h>
 
 #include"String.h"
 
+void ErrorOpen(errno_t err) {
+	if (err != 0) {
+		char error_str[100];
+		strerror_s(error_str, sizeof(error_str), err);
+		printf("%s\n", error_str);
+		exit(err);
+	}
+}
+
+
+void ErrorFile(FILE* input) {
+	char pr;
+	pr = getc(input);
+	if (pr == EOF) {
+		system("cls");
+		printf("Файл пуст");
+		exit(4);
+	}
+}
+
+
+void longest_substring_search(char* string, int len_string)
+{
+	int max_len_substring = 0;
+	char* max_substring = NULL;
+
+	for (int i = 0; i < (len_string - 1); i++)
+	{
+		int index_element = i + 1;
+		int len_substring = 0;
+		char* current_substring = NULL;
+
+		current_substring = (char*)realloc(current_substring, (len_substring + 1) * sizeof(char));
+		current_substring[len_substring] = string[i];
+		len_substring++;
+
+		while (string[i] != string[index_element])
+		{
+			len_substring++;
+			current_substring = (char*)realloc(current_substring, (len_substring + 1) * sizeof(char));
+			current_substring[len_substring] = string[index_element];
+
+			index_element++;
+			if (index_element > len_string)
+				break;
+		}
+
+		if (len_substring > max_len_substring)
+		{
+			max_len_substring = len_substring;
+			max_substring = NULL;
+			max_substring = (char*)malloc(max_len_substring * sizeof(char));
+			for (int i = 0; i < max_len_substring; i++)
+			{
+				max_substring[i] = current_substring[i];
+			}
+		}
+	}
+
+	for (int i = 0; i < max_len_substring; i++)
+	{
+		printf("%c", max_substring[i]);
+	}
+}
+
+
+
 void substring_without_repetitions()
 {
-	printf("hello");
+	system("cls");
+	setlocale(0, "ru");
+
+	FILE* input, * output;
+	errno_t err = fopen_s(&input, "input.txt", "r");
+	ErrorOpen(err);
+	ErrorFile(input);
+	rewind(input);
+
+	err = fopen_s(&output, "output.txt", "w");
+	ErrorOpen(err);
+
+	char symbol = fgetc(input);
+	char* str_in_file = NULL;
+	int len_str_in_file = 0;
+	while (symbol != EOF)
+	{
+		str_in_file = (char*)realloc(str_in_file, (len_str_in_file + 1) * sizeof(char));
+		str_in_file[len_str_in_file] = symbol;
+		len_str_in_file++;
+
+		symbol = fgetc(input);
+	}
+
+	printf("Ваша строка из файла input.txt: ");
+
+	for (int i = 0; i < len_str_in_file; i++)
+	{
+		printf("%c", str_in_file[i]);
+	}
+
+	printf("\n");
+
+	longest_substring_search(str_in_file, len_str_in_file);
 }
