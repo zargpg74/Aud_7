@@ -57,7 +57,7 @@ void longest_substring_search(char* string, int len_string)
 			}
 
 			index_element++;
-			if (index_element > len_string)
+			if (index_element >= len_string)
 			{
 				index_element--;
 				break;
