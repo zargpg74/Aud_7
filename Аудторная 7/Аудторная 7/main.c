@@ -3,8 +3,9 @@
 #include<Windows.h>
 
 #include"String.h"
+#include"getUser.h"
 
-void coice(int task_number)
+void coice(int task_number, int argc, wchar_t* argv[])
 {
 	system("cls");
 	printf("Aud 7\n");
@@ -16,12 +17,15 @@ void coice(int task_number)
 	case 1:
 		substring_without_repetitions();
 		break;
+	case 2:
+		wmain(argc, argv);
+		break;
 	default:
-		coice(task_number);
+		coice(task_number, argc, argv);
 	}
 }
 
-void main()
+void main(int argc, wchar_t* argv[])
 {
 	system("cls");
 	setlocale(0, "ru");
@@ -36,7 +40,10 @@ void main()
 	case 1:
 		substring_without_repetitions();
 		break;
+	case 2:
+		wmain(argc, argv);
+		break;
 	default:
-		coice(task_number);
+		coice(task_number, argc, argv);
 	}
 }
