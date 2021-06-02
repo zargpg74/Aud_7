@@ -136,4 +136,7 @@ void substring_without_repetitions()
 	{
 		fprintf(output, "%c", substring[i]);
 	}
+
+	rewind(output);
+	ErrorFile(output);
 }
