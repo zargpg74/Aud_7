@@ -27,7 +27,7 @@ void ErrorFile(FILE* input) {
 
 
 
-void longest_substring_search(char* string, int len_string)
+void longest_substring_search(char** string, int* len_string)
 {
 	int max_len_substring = 0;
 	char* max_substring = NULL;
@@ -77,10 +77,8 @@ void longest_substring_search(char* string, int len_string)
 		}
 	}
 
-	for (int i = 0; i < max_len_substring; i++)
-	{
-		printf("%c", max_substring[i]);
-	}
+	*string = max_substring;
+	*len_string = max_len_substring;
 }
 
 
@@ -120,5 +118,10 @@ void substring_without_repetitions()
 
 	printf("\n");
 
-	longest_substring_search(str_in_file, len_str_in_file);
+	longest_substring_search(&str_in_file, &len_str_in_file);
+
+	for (int i = 0; i < len_str_in_file; i++)
+	{
+		printf("%c", str_in_file[i]);
+	}
 }
