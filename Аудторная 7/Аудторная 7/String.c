@@ -131,4 +131,9 @@ void substring_without_repetitions()
 	{
 		printf("%c", substring[i]);
 	}
+
+	for (int i = 1; i <= len_substring; i++)
+	{
+		fprintf(output, "%c", substring[i]);
+	}
 }
