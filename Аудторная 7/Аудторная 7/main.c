@@ -25,7 +25,6 @@ void main()
 {
 	system("cls");
 	setlocale(0, "ru");
-	system("color F0");
 	printf("Aud 7\n");
 
 	printf("Введите номер задания: ");
