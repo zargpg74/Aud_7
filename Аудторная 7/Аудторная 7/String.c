@@ -138,5 +138,4 @@ void substring_without_repetitions()
 	}
 
 	rewind(output);
-	ErrorFile(output);
 }
